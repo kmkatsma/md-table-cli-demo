@@ -1,0 +1,86 @@
+/* Structure */
+.table-container {
+  display: flex;
+  flex-direction: column;
+  max-height: 800px;
+
+  // Header and pagination control are fixed height above and below the table
+  data-table-header, pagination-control {
+    flex: 0 0 auto;
+  }
+
+  // Table fills in the remaining area with a scroll
+  md-table {
+    flex: 1 1 auto;
+    overflow: auto;
+  }
+}
+
+.empty-table {
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 64px;
+  font-size: 13px;
+  font-style: italic;
+}
+
+.mat-cell.progress {
+  display: flex;
+  position: relative;
+
+  .progress-stat {
+    width: 32px;
+    padding-right: 8px;
+  }
+
+  .progress-indicator-container {
+    position: relative;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+  }
+  .progress-indicator {
+    transition: all .5s ease-in-out;
+    border-radius: 8px;
+    height: 8px;
+  }
+}
+
+.mat-row.data-row .color {
+  font-weight: bold;
+  font-size: 16px;
+  font-family: cursive;
+}
+
+.mat-column {
+  &.checkbox {
+    max-width: 24px;
+  }
+
+  &.userId {
+    max-width: 32px;
+  }
+
+  &.userName {
+    max-width: 80px;
+  }
+
+  &.color {
+    max-width: 160px;
+  }
+}
+
+.mat-row.data-row {
+  cursor: pointer;
+}
+
+.mat-row.data-row:not(.selected):hover {
+  background: #EEEEEE;
+}
+
+.mat-row.selected,
+.mat-row.data-row:active {
+  background: #F5F5F5;
+}

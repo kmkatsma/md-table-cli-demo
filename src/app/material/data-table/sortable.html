@@ -1,0 +1,8 @@
+<button [class.mat-sorted]="isSorted()">
+  <ng-content></ng-content>
+  <div *ngIf="isSorted()" class="sort-indicator"
+       [class.ascending]="isSortedAscending()">
+    <div class="stem"></div>
+    <div class="arrow"></div>
+  </div>
+</button>

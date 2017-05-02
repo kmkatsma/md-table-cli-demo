@@ -1,0 +1,25 @@
+<div class="rows-per-page">
+  Rows per page:
+  <md-select [ngModel]="dataSource.pagination.pageLength"
+             (change)="dataSource.setPageLength($event.value)">
+    <md-option *ngFor="let pageSizeOption of pageSizeOptions" [value]="pageSizeOption">
+      {{pageSizeOption}}
+    </md-option>
+  </md-select>
+</div>
+
+<div class="range">
+  {{getRangeDisplay()}}
+
+</div>
+
+<button md-icon-button
+        (click)="dataSource.incrementPage(-1); pageChanged.emit()"
+        [disabled]="!dataSource.canIncrementPage(-1)">
+  <md-icon>navigate_before</md-icon>
+</button>
+<button md-icon-button
+        (click)="dataSource.incrementPage(1); pageChanged.emit()"
+        [disabled]="!dataSource.canIncrementPage(1)">
+  <md-icon>navigate_next</md-icon>
+</button>

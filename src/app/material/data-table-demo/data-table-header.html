@@ -1,0 +1,80 @@
+<div class="content" [style.display]="!selection.hasValue() ? '' : 'none'">
+  <div class="title" [style.marginLeft]="'8px'">
+    User Progress
+  </div>
+
+  <div class="actions">
+    <div class="search-container">
+      <md-input-container floatPlaceholder="never"
+                          [style.width]="searchOpen ? '100%' : ''"
+                          [style.display]="peopleDatabase.baseData.length ? '' : 'none'">
+        <div mdPrefix>
+          <md-icon class="search-icon">search</md-icon>
+        </div>
+        <input mdInput #filter placeholder="Search names"
+               (blur)="searchOpen = !!dataSource.filter"
+               (focus)="searchOpen = true"
+               (keydown.esc)="cancelSearch(filter, $event)">
+        <button md-icon-button class="cancel-search"
+                [style.visibility]="searchOpen ? 'visible' : 'hidden'"
+                (click)="cancelSearch(filter, $event)">
+          <md-icon>close</md-icon>
+        </button>
+      </md-input-container>
+    </div>
+
+    <button md-raised-button color="primary"
+            class="add-person"
+            (click)="peopleDatabase.addPerson()"
+            title="Testing new items added to data">
+      <md-icon>add</md-icon>
+      Add Person
+    </button>
+
+    <button md-icon-button [mdMenuTriggerFor]="overflowMenu">
+      <md-icon>more_vert</md-icon>
+    </button>
+    <md-menu #overflowMenu="mdMenu">
+      <button md-menu-item (click)="shiftColumns()"
+              *ngIf="dataSource.displayedData.length"
+              title="Testing column array reference change">
+        <md-icon>subdirectory_arrow_left</md-icon>
+        Shift Columns
+      </button>
+
+      <button md-menu-item (click)="toggleColorColumn()"
+              *ngIf="dataSource.displayedData.length"
+              title="Testing adding/removing columns">
+        <md-icon>color_lens</md-icon>
+        Toggle Color Column
+      </button>
+    </md-menu>
+  </div>
+</div>
+
+<div class="content" *ngIf="selection.hasValue()">
+  <div class="title">
+    <button md-icon-button (click)="selection.clear()">
+      <md-icon>close</md-icon>
+    </button>
+    <div>{{selection.selected.length}} Selected</div>
+  </div>
+
+  <div class="actions">
+    <button md-button (click)="peopleDatabase.scramble(selection.selected)"
+            [disabled]="selection.selected.length == 1">
+      <md-icon>shuffle</md-icon>
+      Shuffle
+    </button>
+
+    <button md-button (click)="changeSelectedProgress()">
+      <md-icon>format_align_left</md-icon>
+      Change Progress
+    </button>
+
+    <button md-button (click)="removeSelected()">
+      <md-icon>delete</md-icon>
+      Remove
+    </button>
+  </div>
+</div>

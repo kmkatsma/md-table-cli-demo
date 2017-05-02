@@ -1,0 +1,86 @@
+// @import '../core/style/variables';
+@import '~@angular/material/theming';
+
+.mat-table-sortable {
+  display: flex;
+  cursor: pointer;
+}
+
+@mixin mat-table-sorted($direction) {
+  color: rgba(0, 0, 0, .87);
+
+  &::after {
+    display: block;
+    content: '\\25b2';
+
+    @if $direction == 'ascending' {
+      padding-right: 4px;
+      transform: rotate(180deg);
+    } @else {
+      padding-left: 4px;
+    }
+  }
+}
+
+.mat-table-sort-descending {
+  @include mat-table-sorted('descending');
+}
+
+.mat-table-sort-ascending {
+  @include mat-table-sorted('ascending');
+}
+
+:host {
+  display: flex;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  cursor: pointer;
+  border: none;
+  font-family: $mat-font-family;
+  width: 100%;
+  text-align: left;
+  background: none;
+  padding: 0;
+  outline: none;
+
+  &.mat-sorted {
+    font-weight: bold;
+  }
+}
+
+.sort-indicator {
+  width: 12px;
+  height: 12px;
+  margin-left: 8px;
+  position: relative;
+  flex: 0 0 auto;
+
+  &.ascending {
+    transform: rotate(180deg);
+  }
+
+  .stem {
+    background: #CCC;
+    width: 2px;
+    height: 12px;
+    margin: auto;
+    border-radius: 20%;
+  }
+
+  .arrow {
+    border-style: solid;
+    border-width: 2px 2px 0 0;
+    content: '';
+    height: 6px;
+    width: 6px;
+    transform: rotate(-45deg);
+    position: absolute;
+    top: 0;
+    left: 2px;
+    color: #CCC;
+  }
+}
