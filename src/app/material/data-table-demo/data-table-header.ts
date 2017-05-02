@@ -26,7 +26,7 @@ export class DataTableHeader {
 
   @ViewChild('filter') filter: ElementRef;
 
-  constructor(private peopleDatabase: PeopleDatabase) { }
+  constructor(public peopleDatabase: PeopleDatabase) { }
 
   ngOnInit() {
     Observable.fromEvent(this.filter.nativeElement, 'keyup')

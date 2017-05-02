@@ -22,7 +22,9 @@ export class PeopleDatabase {
   baseDataChange = new BehaviorSubject<void>(null);
 
   constructor(private snackBar: MdSnackBar) {
-    for (let i = 0; i < 10000; i++) { this.addPerson(true); }
+    for (let i = 0; i < 10000; i++) { 
+      this.addPerson(true); 
+    }
   }
 
   getData(filter: string): Observable<UserData[]> {
